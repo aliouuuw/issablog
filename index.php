@@ -31,9 +31,23 @@ $current_page = $_SERVER['REQUEST_URI'];
         <nav>
             <div>
                 <ul>
-                    <li <?php if ($current_page == '/issablog/') echo 'class="current"'; ?>><a href="./">Home</a></li>
-                    <li style="margin-right:30px"  <?php if ($current_page == '/issablog/about.php') echo 'class="current"'; ?>><a href="about.php">About Me</a></li>
-                    <li class="ctbtn"><a href="contact.php" style="color: #FFFFFF">Contact Me</a></li>
+                <li <?php if ($current_page == '/issablog/index.php')
+                        echo 'class="current"'; ?>><a href="./">Home</a></li>
+
+                    <?php if(isset($_SESSION['username'])): ?>
+                        <li style="margin-right:30px" <?php if ($current_page == '/issablog/about.php')
+                            echo 'class="current"'; ?>><a href="about.php">About Me</a></li>
+                        <li style="margin-right:30px" <?php if ($current_page == '/issablog/admin.php')
+                            echo 'class="current"'; ?>><a href="admin.php">Admin</a></li>
+                        <li class="loginbtn"><form class="logout" method="post" action="logout.php"><button type="submit" value="Logout">Logout</button></form></li>
+
+                    <?php else: ?>
+                        <li style="margin-right:30px" <?php if ($current_page == '/issablog/about.php')
+                            echo 'class="current"'; ?>><a href="about.php">About Me</a></li>
+                        <li style="margin-right:30px" <?php if ($current_page == '/issablog/contact.php')
+                            echo 'class="current"'; ?>><a href="contact.php">Contact Me</a></li>
+                        <li class="loginbtn"><a href="login.php">Login</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </nav>
@@ -55,7 +69,7 @@ $current_page = $_SERVER['REQUEST_URI'];
                     <div class="more"><a href="about.php">More about me.</a></div>
             </div>
             <div class="heroimg">
-                <img src="issabp1.png" alt="Issa's background photo">
+                <img src="assets/issabp1.png" alt="Issa's background photo">
             </div>
         </section>
 
@@ -69,7 +83,7 @@ $current_page = $_SERVER['REQUEST_URI'];
                     <span class='blogdate'>
                         <?php echo $q['date']; ?>
                     </span>
-                    <div>
+                    <div class="blogcontent">
                         <p>
                             <?php echo $q['title']; ?>
                         </p>
