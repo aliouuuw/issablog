@@ -171,13 +171,22 @@ footer {
     margin-bottom: 20px;
 }
 
-.blogitem {
-    height: 100%;
-    padding-inline: 10px;
+.bloglayout{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     grid-area: blogi;
-    grid-column: span 1;
+    grid-column: span 3;
+    height: auto;
+}
+
+.blogitem {
+    height: 300px;
+    width: 300px;
+    padding-inline: 10px;
     background-color: #c0c2b9bb;
     box-shadow: 0 0 3px #4a4e4c;
+    margin-bottom: 40px
 }
 
 
@@ -185,8 +194,9 @@ footer {
     font-size: 12px;
 }
 
-.blogitem p{
+.blogcontent{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -331,6 +341,11 @@ form button{
     cursor: pointer;
 }
 
+form textarea{
+    width: 280px;
+    height: 100px;
+}
+
 form button:hover{
     background-color: #4a4e4c;
 }
@@ -398,6 +413,14 @@ form button:hover{
     grid-column: span 3;
     margin-bottom: 20px;
 }
+
+.adbloglayout{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    grid-area: blogi;
+    grid-column: span 3;
+}
 .adblogtitle button{
     width: 120px;
     height: 40px;
@@ -411,9 +434,8 @@ form button:hover{
 
 .adblogitem {
     height: 100px;
+    width: 300px;
     padding-inline: 10px;
-    grid-area: blogi;
-    grid-column: span 1;
     background-color: #c0c2b9bb;
     box-shadow: 0 0 3px #4a4e4c;
 }
@@ -433,9 +455,9 @@ form button:hover{
     justify-content: space-between;
     align-items: center;
 }
-.adblogcontent p{
+.adblogcontent div{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 .updatebtn{
@@ -460,7 +482,7 @@ form button:hover{
 }
 
 .addmodal {
-    /* Hidden by default */
+    display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
@@ -486,4 +508,13 @@ form button:hover{
 }
 .addmodal span:hover{
     cursor: pointer;
+}
+
+.toolimg{
+    width: 80px;
+    height: 40px;
+}
+.toolimg image{
+    width: auto;
+    object-fit: cover;
 }

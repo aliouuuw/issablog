@@ -14,7 +14,7 @@ if (!$conn) {
     echo "<h1>Database Connection not established<h3>";
 }
 
-// Get data to display on index page
+// Get blog data to display on index page
 $sql = "SELECT * FROM blogs";
 $query = mysqli_query($conn, $sql);
 
@@ -28,9 +28,44 @@ if(isset($_POST['add_post'])){
 
     echo $sql;
 
-    header("Location: issablog/admin.php");
+    header("Location: /issablog/admin.php");
     exit();
 }
 
+// Update a post
+if(isset($_POST['update_post'])){
+    $id = $_POST['id'];
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+
+    $sql = "UPDATE blogs SET title = '$title', content = '$content' WHERE id = $id";
+    mysqli_query($conn, $sql);
+
+    header("Location: /issablog/admin.php");
+    exit();
+}
+
+// Delete a post
+if(isset($_POST['delete_post'])){
+    $id = $_POST['id'];
+
+    $sql = "DELETE FROM blogs WHERE id = $id";
+    mysqli_query($conn, $sql);
+
+    header("Location: /issablog/admin.php");
+    exit();
+}
+
+
+// Get data to display on index page
+$sql2 = "SELECT * FROM tools";
+$query2 = mysqli_query($conn, $sql2);
+
+
+// Create a new tool
+if(isset($_POST['add_tool'])){
+    echo "<pre>", print_r($_POST, true), "</pre>";
+    die();
+}
 
 ?>

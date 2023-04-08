@@ -72,38 +72,155 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
                 <button onclick="document.getElementById('add-blog-modal').style.display='block'">Add New Post</button>
             </div>
 
-            <?php foreach ($query as $q) { ?>
-                <div class="adblogitem">
-                    <span class='blogdate'>
-                        <?php echo $q['date']; ?>
-                    </span>
-                    <div class="adblogcontent">
-                        <p>
-                            <?php echo $q['title']; ?>
-                        </p>
-                        <div>
-                            <button class="updatebtn"
-                                onclick="document.getElementById('update-blog-modal-<?php echo $q['id']; ?>').style.display='block'">Edit</button>
-                            <button class="deletebtn"
-                                onclick="document.getElementById('delete-blog-modal-<?php echo $q['id']; ?>').style.display='block'">Delete</button>
+
+            <div class='adbloglayout'>
+                <?php foreach ($query as $q) { ?>
+                    <div class="adblogitem">
+                        <span class='blogdate'>
+                            <?php echo $q['date']; ?>
+                        </span>
+                        <div class="adblogcontent">
+                            <p>
+                                <?php echo $q['title']; ?>
+                            </p>
+                            <div>
+                                <button class="updatebtn"
+                                    onclick="document.getElementById('update-blog-modal-<?php echo $q['id']; ?>').style.display='block'">Edit</button>
+                                <button class="deletebtn"
+                                    onclick="document.getElementById('delete-blog-modal-<?php echo $q['id']; ?>').style.display='block'">Delete</button>
+                            </div>
                         </div>
                     </div>
+                <?php } ?>
+
+                <!-- Add Modal -->
+                <div class="addmodal" id="add-blog-modal">
+                    <form class="modal-content" action="admin.php" method="post">
+                        <span onclick="document.getElementById('add-blog-modal').style.display='none'" class="close"
+                            title="Close Modal">X</span>
+                        <h1>Add New Post</h1>
+                        <label for="title"><b>Title</b></label>
+                        <input type="text" placeholder="Enter Title" name="title" required>
+
+                        <label for="content"><b>Content</b></label>
+                        <textarea placeholder="Enter Content" name="content" required></textarea>
+
+                        <button type="submit" name="add_post">Add Post</button>
+                    </form>
                 </div>
-            <?php } ?>
 
-            <div class="addmodal" id="add-blog-modal">
-                <form class="modal-content" action="admin.php" method="post">
-                    <span onclick="document.getElementById('add-blog-modal').style.display='none'" class="close"
-                        title="Close Modal">X</span>
-                    <h1>Add New Post</h1>
-                    <label for="title"><b>Title</b></label>
-                    <input type="text" placeholder="Enter Title" name="title" required>
+                <!-- Update Modal -->
+                <?php foreach ($query as $q) { ?>
+                    <div class="addmodal" id="update-blog-modal-<?php echo $q['id']; ?>">
+                        <form class="modal-content" action="admin.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo $q['id']; ?>">
+                            <span
+                                onclick="document.getElementById('update-blog-modal-<?php echo $q['id']; ?>').style.display='none'"
+                                class="close" title="Close Modal">X</span>
+                            <h1>Update This Post</h1>
+                            <label for="title"><b>Title</b></label>
+                            <input type="text" name="title" value="<?php echo $q['title']; ?>">
 
-                    <label for="content"><b>Content</b></label>
-                    <textarea placeholder="Enter Content" name="content" required></textarea>
+                            <label for="content"><b>Content</b></label>
+                            <textarea name="content"><?php echo $q['content']; ?></textarea>
 
-                    <button type="submit" name="add_post">Add Post</button>
-                </form>
+                            <button class="updatebtn" type="submit" name="update_post">Update</button>
+                        </form>
+                    </div>
+                <?php } ?>
+
+                <!-- Modal for deleting a post -->
+                <?php foreach ($query as $q) { ?>
+                    <div id="delete-blog-modal-<?php echo $q['id']; ?>" class="addmodal">
+                        <form class="modal-content" method="POST" action="admin.php">
+                            <input type="hidden" name="id" value="<?php echo $q['id']; ?>">
+                            <span class="close"
+                                onclick="document.getElementById('delete-blog-modal-<?php echo $q['id']; ?>').style.display='none'">X</span>
+                            <h1>Are you sure?</h1>
+                            <button class="deletebtn" type="submit" name="delete_post">Delete</button>
+                        </form>
+                    </div>
+                <?php } ?>
+            </div>
+        </section>
+        <section class="adblogsec">
+            <div class='adblogtitle'>
+                <h1>My Toolbox</h1>
+                <button onclick="document.getElementById('add-tool-modal').style.display='block'">Add New Tool</button>
+            </div>
+
+
+            <div class='adbloglayout'>
+                <?php foreach ($query2 as $q) { ?>
+                    <div class="adblogitem">
+                        <div class='toolimg'>
+                            <img src="<?php echo $q['image']; ?>" alt="">
+                        </div>
+                        <div class="adblogcontent">
+                            <p>
+                                <?php echo $q['title']; ?>
+                            </p>
+                            <div>
+                                <button class="updatebtn"
+                                    onclick="document.getElementById('update-tool-modal-<?php echo $q['id']; ?>').style.display='block'">Edit</button>
+                                <button class="deletebtn"
+                                    onclick="document.getElementById('delete-tool-modal-<?php echo $q['id']; ?>').style.display='block'">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <!-- Add Modal -->
+                <div class="addmodal" id="add-tool-modal">
+                    <form class="modal-content" action="admin.php" method="post" enctype="multipart/form-data">
+                        <span onclick="document.getElementById('add-tool-modal').style.display='none'" class="close"
+                            title="Close Modal">X</span>
+                        <h1>Add New Tool</h1>
+                        <label for="title"><b>Title</b></label>
+                        <input type="text" placeholder="Enter Title" name="title" required>
+
+                        <label for="content"><b>Description</b></label>
+                        <textarea placeholder="Enter Content" name="description" required></textarea>
+
+                        <label for="image"><b>Image:</b></label>
+                        <input type="file" name="imageurl" id="image" accept="image/*" required>
+
+                        <button type="submit" name="add_tool">Add Post</button>
+                    </form>
+                </div>
+
+                <!-- Update Modal -->
+                <?php foreach ($query2 as $q) { ?>
+                    <div class="addmodal" id="update-tool-modal-<?php echo $q['id']; ?>">
+                        <form class="modal-content" action="admin.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo $q['id']; ?>">
+                            <span
+                                onclick="document.getElementById('update-tool-modal-<?php echo $q['id']; ?>').style.display='none'"
+                                class="close" title="Close Modal">X</span>
+                            <h1>Update This Tool</h1>
+                            <label for="title"><b>Title</b></label>
+                            <input type="text" name="title" value="<?php echo $q['title']; ?>">
+
+                            <label for="content"><b>Content</b></label>
+                            <textarea name="content"><?php echo $q['content']; ?></textarea>
+
+                            <button class="updatebtn" type="submit" name="update_tool">Update</button>
+                        </form>
+                    </div>
+                <?php } ?>
+
+                <!-- Modal for deleting a post -->
+                <?php foreach ($query2 as $q) { ?>
+                    <div id="delete-tool-modal-<?php echo $q['id']; ?>" class="addmodal">
+                        <form class="modal-content" method="POST" action="admin.php">
+                            <input type="hidden" name="id" value="<?php echo $q['id']; ?>">
+                            <span class="close"
+                                onclick="document.getElementById('delete-tool-modal-<?php echo $q['id']; ?>').style.display='none'">X</span>
+                            <h1>Are you sure?</h1>
+                            <button class="deletebtn" type="submit" name="delete_tool">Delete</button>
+                        </form>
+                    </div>
+                <?php } ?>
             </div>
         </section>
     </main>

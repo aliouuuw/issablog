@@ -122,7 +122,7 @@ if (isset($_POST['login-btn'])){
                    <?php endforeach; ?>
                 </div>
             <?php endif; ?>
-            <form  class="formcontainer" action="login.php" method="post">
+            <form action="login.php" method="post">
                 <h1>Admin login</h1>
                 <div class="formin">
                     <label for="username">Username:</label>

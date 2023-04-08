@@ -31,15 +31,19 @@ $current_page = $_SERVER['REQUEST_URI'];
         <nav>
             <div>
                 <ul>
-                <li <?php if ($current_page == '/issablog/index.php')
-                        echo 'class="current"'; ?>><a href="./">Home</a></li>
+                    <li <?php if ($current_page == '/issablog/index.php')
+                        echo 'class="current"'; ?>><a href="./">Home</a>
+                    </li>
 
-                    <?php if(isset($_SESSION['username'])): ?>
+                    <?php if (isset($_SESSION['username'])): ?>
                         <li style="margin-right:30px" <?php if ($current_page == '/issablog/about.php')
                             echo 'class="current"'; ?>><a href="about.php">About Me</a></li>
                         <li style="margin-right:30px" <?php if ($current_page == '/issablog/admin.php')
                             echo 'class="current"'; ?>><a href="admin.php">Admin</a></li>
-                        <li class="loginbtn"><form class="logout" method="post" action="logout.php"><button type="submit" value="Logout">Logout</button></form></li>
+                        <li class="loginbtn">
+                            <form class="logout" method="post" action="logout.php"><button type="submit"
+                                    value="Logout">Logout</button></form>
+                        </li>
 
                     <?php else: ?>
                         <li style="margin-right:30px" <?php if ($current_page == '/issablog/about.php')
@@ -56,17 +60,17 @@ $current_page = $_SERVER['REQUEST_URI'];
         <section class="herosec">
             <div class="herotxt">
                 <h1 class="herottl">Hi, my name is Issa!</h1>
-                    <div class="wrapper">
-                        <span class="iam-text"> I'm a</span>
-                        <ul class="description">
-                            <li><span>Computer Scientist 💻</span></li>
-                            <li><span>Videographer 📹</span></li>
-                            <li><span>Photographer 📸</span></li>
-                            <li><span>Gamer 🎮</span></li>
-                            <li><span>Car Addict 🚘</span></li>
-                        </ul>
-                    </div>
-                    <div class="more"><a href="about.php">More about me.</a></div>
+                <div class="wrapper">
+                    <span class="iam-text"> I'm a</span>
+                    <ul class="description">
+                        <li><span>Computer Scientist 💻</span></li>
+                        <li><span>Videographer 📹</span></li>
+                        <li><span>Photographer 📸</span></li>
+                        <li><span>Gamer 🎮</span></li>
+                        <li><span>Car Addict 🚘</span></li>
+                    </ul>
+                </div>
+                <div class="more"><a href="about.php">More about me.</a></div>
             </div>
             <div class="heroimg">
                 <img src="assets/issabp1.png" alt="Issa's background photo">
@@ -78,26 +82,29 @@ $current_page = $_SERVER['REQUEST_URI'];
                 <h1>My Blog Posts</h1>
             </div>
 
-            <?php foreach ($query as $q) { ?>
-                <div class="blogitem">
-                    <span class='blogdate'>
-                        <?php echo $q['date']; ?>
-                    </span>
-                    <div class="blogcontent">
-                        <p>
-                            <?php echo $q['title']; ?>
-                        </p>
-                        <p>
-                            <?php echo $q['content']; ?>
-                        </p>
+            <div class='bloglayout'>
+                <?php foreach ($query as $q) { ?>
+                    <div class="blogitem">
+                        <span class='blogdate'>
+                            <?php echo $q['date']; ?>
+                        </span>
+                        <div class="blogcontent">
+                            <p>
+                                <?php echo $q['title']; ?>
+                            </p>
+                            <p>
+                                <?php echo $q['content']; ?>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         </section>
     </main>
     <footer>
         <ul>
-            <li class="ctbtn"><a href="https://www.instagram.com/issaa_lambert/" style="color: #FFFFFF">Instagram</a></li>
+            <li class="ctbtn"><a href="https://www.instagram.com/issaa_lambert/" style="color: #FFFFFF">Instagram</a>
+            </li>
             <li class="ctbtn"><a href="https://twitter.com/LambertIssa" style="color: #FFFFFF">Twitter</a></li>
             <li class="ctbtn"><a href="" style="color: #FFFFFF">Github</a></li>
         </ul>
