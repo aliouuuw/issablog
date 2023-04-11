@@ -184,14 +184,14 @@ footer {
     height: 300px;
     width: 300px;
     padding-inline: 10px;
-    background-color: #c0c2b9bb;
+    background-color: #ffffff;
     box-shadow: 0 0 3px #4a4e4c;
     margin-bottom: 40px
 }
 
 
 .blogdate {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .blogcontent{
@@ -242,7 +242,7 @@ header li {
 }
 
 .loginbtn{
-    background-color: #b9c2be;
+    background-color: #ffffff;
     box-shadow: 0 0 1px #4a4e4c;
 }
 
@@ -350,6 +350,11 @@ form button:hover{
     background-color: #4a4e4c;
 }
 
+ul .loginbtn:hover{
+    background-color: #4a4e4c;
+}
+
+
 .formin{
     display: flex;
     flex-direction: column;
@@ -436,7 +441,7 @@ form button:hover{
     height: 100px;
     width: 300px;
     padding-inline: 10px;
-    background-color: #c0c2b9bb;
+    background-color: #ffffff;
     box-shadow: 0 0 3px #4a4e4c;
 }
 
@@ -492,29 +497,44 @@ form button:hover{
     height: 100%; /* Full height */
     overflow: auto;
 }
+
 .addmodal textarea{
     width: 300px;
     height: 200px;
     margin-bottom: 15px
 }
+
 .addmodal label{
     margin-bottom: 15px;
     margin-top: 15px;
 }
+
 .addmodal span{
     font-family: 'DM Sans';
     font-weight: 600;
     font-size: xx-large;
 }
+
 .addmodal span:hover{
     cursor: pointer;
 }
 
 .toolimg{
     width: 80px;
-    height: 40px;
+    height: 60px;
 }
-.toolimg image{
-    width: auto;
-    object-fit: cover;
+
+.pic{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.abtoolimg{
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 150px;  
+    margin-inline: 25%;
 }

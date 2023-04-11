@@ -63,6 +63,24 @@ $current_page = $_SERVER['REQUEST_URI'];
                 <h1>My Toolbox</h1>
             </div>
 
+            <div class='bloglayout'>
+                <?php foreach ($query2 as $q) { ?>
+                    <div class="blogitem">
+                        <span class='blogdate'>
+                            <?php echo $q['title']; ?>
+                        </span>
+                        <div class="blogcontent">
+                            <div class='abtoolimg'>
+                                <img class="pic" src="<?php echo $q['imageurl']; ?>" alt="">
+                            </div>
+                            <p>
+                                <?php echo $q['content']; ?>
+                            </p>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+
         </section>
     </main>
     <footer>

@@ -38,7 +38,7 @@ if(isset($_POST['update_post'])){
     $title = $_POST['title'];
     $content = $_POST['content'];
 
-    $sql = "UPDATE blogs SET title = '$title', content = '$content' WHERE id = $id";
+    $sql = "UPDATE blogs SET title =  IF('$title'='', title, '$title'), content =  IF('$content'='', content, '$content') WHERE id = $id";
     mysqli_query($conn, $sql);
 
     header("Location: /issablog/admin.php");
@@ -64,8 +64,44 @@ $query2 = mysqli_query($conn, $sql2);
 
 // Create a new tool
 if(isset($_POST['add_tool'])){
-    echo "<pre>", print_r($_POST, true), "</pre>";
-    die();
+    $imageurl = $_FILES['imageurl']['name'];
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+
+    $sql = "INSERT INTO tools(imageurl, title, content) VALUES('$imageurl', '$title', '$content')";
+    $res  = mysqli_query($conn, $sql);
+
+    if ($res){
+        move_uploaded_file($_FILES['imageurl']['tmp_name'], "$imageurl");
+    }
+
+    header("Location: /issablog/admin.php");
+    exit();
+}
+
+// Update a tool
+if(isset($_POST['update_tool'])){
+    $id = $_POST['id'];
+    $title = $_POST['title'];
+    $imageurl = $_POST['imageurl'];
+    $content = $_POST['content'];
+
+    $sql = "UPDATE tools SET title =  IF('$title'='', title, '$title'), content =  IF('$content'='', content, '$content'), imageurl =  IF('$imageurl'='', imageurl, '$imageurl') WHERE id = $id";
+    mysqli_query($conn, $sql);
+
+    header("Location: /issablog/admin.php");
+    exit();
+}
+
+// Delete a post
+if(isset($_POST['delete_tool'])){
+    $id = $_POST['id'];
+
+    $sql = "DELETE FROM tools WHERE id = $id";
+    mysqli_query($conn, $sql);
+
+    header("Location: /issablog/admin.php");
+    exit();
 }
 
 ?>

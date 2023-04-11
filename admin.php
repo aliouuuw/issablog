@@ -153,13 +153,13 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
             <div class='adbloglayout'>
                 <?php foreach ($query2 as $q) { ?>
                     <div class="adblogitem">
-                        <div class='toolimg'>
-                            <img src="<?php echo $q['image']; ?>" alt="">
-                        </div>
-                        <div class="adblogcontent">
-                            <p>
+                            <span class='blogdate'>
                                 <?php echo $q['title']; ?>
-                            </p>
+                            </span>
+                        <div class="adblogcontent">
+                            <div class='toolimg'>
+                                <img class="pic" src="<?php echo $q['imageurl']; ?>" alt="">
+                            </div>
                             <div>
                                 <button class="updatebtn"
                                     onclick="document.getElementById('update-tool-modal-<?php echo $q['id']; ?>').style.display='block'">Edit</button>
@@ -179,11 +179,11 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
                         <label for="title"><b>Title</b></label>
                         <input type="text" placeholder="Enter Title" name="title" required>
 
-                        <label for="content"><b>Description</b></label>
-                        <textarea placeholder="Enter Content" name="description" required></textarea>
+                        <label for="content"><b>Content</b></label>
+                        <textarea placeholder="Enter Content" name="content" required></textarea>
 
-                        <label for="image"><b>Image:</b></label>
-                        <input type="file" name="imageurl" id="image" accept="image/*" required>
+                        <label for="imageurl"><b>Image:</b></label>
+                        <input type="file" name="imageurl" id="imageurl" accept="image/*" required>
 
                         <button type="submit" name="add_tool">Add Post</button>
                     </form>
@@ -203,6 +203,9 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 
                             <label for="content"><b>Content</b></label>
                             <textarea name="content"><?php echo $q['content']; ?></textarea>
+
+                            <label for="imageurl"><b>Image:</b></label>
+                            <input type="file" name="imageurl" id="imageurl" accept="image/*">
 
                             <button class="updatebtn" type="submit" name="update_tool">Update</button>
                         </form>
